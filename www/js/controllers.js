@@ -45,19 +45,16 @@
       $scope.items = itemArraySync;
 
       $scope.switchDeleteMode = function () {
-        $scope.mode = 'items';
-
         $scope.deleteMode = !$scope.deleteMode;
       };
 
       $scope.openAddItemModal = function () {
-        $scope.mode = 'items';
-
         $scope.modalData = {
           type: 'Add',
           title: 'Add Item',
           item: {}
         };
+
         $scope.itemModal.show();
       };
 
@@ -67,6 +64,7 @@
           title: 'Edit ' + item.title,
           item: item
         };
+
         $scope.itemModal.show();
       };
 
@@ -75,21 +73,20 @@
       };
 
       $scope.submitItemFromModal = function (modalType, item) {
+        var modifyItemPromise;
         if (modalType == "Add") {
-          itemArraySync.$add(item).then(function (ref) {
-            $scope.itemModal.hide();
-          });
+          modifyItemPromise = itemArraySync.$add(item);
         } else { // "Edit"
-          itemArraySync.$save(item).then(function (ref) {
-            $scope.itemModal.hide();
-          });
+          modifyItemPromise = itemArraySync.$save(item);
         }
+
+        modifyItemPromise.then(function (ref) {
+          $scope.itemModal.hide();
+        });
       };
 
       $scope.removeItem = function (item, roomName, index) {
-        itemArraySync.$remove(item).then(function (ref) {
-
-        });
+        itemArraySync.$remove(item);
       };
 
     }
