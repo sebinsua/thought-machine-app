@@ -1,0 +1,13 @@
+{
+  "name": "thought-machine-app",
+  "email": "me@sebinsua.com",
+  "app_id": "com.sebinsua.thought-machine-app",
+  "package_name": "com.sebinsua.thought-machine-app",
+  "ios_certificate": "./provision/yourname.cer",
+  "ios_certificate_password": "",
+  "ios_profile": "./provision/ionic-app.mobileprovision",
+  "android_keystore": "",
+  "android_keystore_alias": "",
+  "android_keystore_password": "",
+  "android_key_password": ""
+}

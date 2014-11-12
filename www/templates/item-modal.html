@@ -1,0 +1,35 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">{{ modalData.title }}</h1>
+    <div class="buttons">
+      <button class="button button-clear button-positive button-icon icon ion-ios7-close-empty"
+              ng-click="closeItemModal()"></button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form name="itemForm" ng-submit="submitItemFromModal(modalData.type, modalData.item)">
+      <input ng-model="modalData.type" type="hidden">
+      <label class="item item-input">
+        <span class="input-label">Title</span>
+        <input ng-model="modalData.item.title" type="text" required autofocus>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Description</span>
+        <input ng-model="modalData.item.description" type="text">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Room</span>
+        <input ng-model="modalData.item.room" type="text" required>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Weight (Kg)</span>
+        <input ng-model="modalData.item.weight" type="number" min="0" step="0.05" required>
+      </label>
+      <ion-toggle ng-model="modalData.item.is_fragile" toggle-class="toggle-positive">Fragile</ion-toggle>
+      <div class="submit-holder">
+        <button type="submit" class="button button-block button-balanced"
+                ng-disabled="itemForm.$invalid">Save</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

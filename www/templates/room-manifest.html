@@ -1,0 +1,58 @@
+<ion-view title="{{ currentRoomName }}">
+
+  <ion-content>
+
+    <div ng-if="heaviestItems.length">
+      <div class="manifest-header heaviest-header">
+        <h3>Heaviest</h3>
+      </div>
+      <ion-list>
+        <ion-item ng-repeat="item in heaviestItems">
+          <strong>{{ item.title }}</strong>
+          <span ng-if="!currentRoomName"> at <span class="room">{{ item.room }}</span></span>
+          <ul class="summary horizontal-list">
+            <li class="description">{{ item.description }}</li>
+            <li class="weight">{{ item.weight }} Kg</li>
+            <li class="fragile" ng-if="item.is_fragile">Fragile</li>
+          </ul>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div ng-if="fragileItems.length">
+      <div class="manifest-header fragile-header">
+        <h3>Fragile</h3>
+      </div>
+      <ion-list>
+        <ion-item ng-repeat="item in fragileItems">
+          <strong>{{ item.title }}</strong>
+          <span ng-if="!currentRoomName"> at <span class="room">{{ item.room }}</span></span>
+          <ul class="summary horizontal-list">
+            <li class="description">{{ item.description }}</li>
+            <li class="weight">{{ item.weight }} Kg</li>
+            <li class="fragile" ng-if="item.is_fragile">Fragile</li>
+          </ul>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div ng-if="allOtherItems.length">
+      <div class="manifest-header other-header">
+        <h3>Other</h3>
+      </div>
+      <ion-list>
+        <ion-item ng-repeat="item in allOtherItems">
+          <strong>{{ item.title }}</strong>
+          <span ng-if="!currentRoomName"> at <span class="room">{{ item.room }}</span></span>
+          <ul class="summary horizontal-list">
+            <li class="description">{{ item.description }}</li>
+            <li class="weight">{{ item.weight }} Kg</li>
+            <li class="fragile" ng-if="item.is_fragile">Fragile</li>
+          </ul>
+        </ion-item>
+      </ion-list>
+    </div>
+
+  </ion-content>
+
+</ion-view>

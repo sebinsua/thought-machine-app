@@ -1,0 +1,72 @@
+<ion-view title="">
+
+  <ion-nav-buttons side="left">
+    <button class="button button-clear button-positive button-icon icon"
+            ng-class="{ 'ion-checkmark-round': deleteMode,
+                        'ion-close-round': !deleteMode }"
+            ng-click="switchDeleteMode()">
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear button-positive button-icon icon ion-plus-round"
+            ng-click="openAddItemModal()">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <div class="pillbox">
+      <div class="button-bar">
+        <button class="button button-small button-positive"
+                ng-class="{'button-outline': mode != 'items'}"
+                ng-click="mode = 'items'">
+                Items
+        </button>
+        <button class="button button-small button-positive"
+                ng-class="{'button-outline': mode != 'manifests'}"
+                ng-click="mode = 'manifests'">
+                Manifests
+        </button>
+      </div>
+    </div>
+
+    <div class="switch-container"
+         ng-switch on="mode">
+
+      <ion-list ng-switch-when="items"
+                can-swipe="true"
+                show-delete="deleteMode">
+        <div ng-repeat="(roomName, items) in itemsByRoom">
+            <div class="item item-divider">{{ roomName }}</div>
+            <ion-item ng-repeat="item in items">
+              <div class="header">
+                <h3>{{ item.title }}</h3>
+              </div>
+              <ul class="summary horizontal-list">
+                <li class="description">{{ item.description }}</li>
+                <li class="weight">{{ item.weight }} Kg</li>
+                <li class="fragile" ng-if="item.is_fragile">Fragile</li>
+              </ul>
+              <ion-option-button class="edit-button button-info"
+                                 ng-click="openEditItemModal(item)">
+                Edit
+              </ion-option-button>
+              <ion-delete-button class="ion-minus-circled"
+                                 ng-click="removeItem(item, roomName, $index)">
+              </ion-delete-button>
+            </ion-item>
+        </div>
+      </ion-list>
+
+      <ion-list ng-switch-when="manifests">
+        <div ng-if="rooms.length">
+          <ion-item ui-sref="room-manifest({ name: null })">All</ion-item>
+          <div class="item item-divider">By Room</div>
+          <ion-item ui-sref="room-manifest({ name: room })" ng-repeat="room in rooms">
+            {{ room }}
+          </ion-item>
+        </div>
+      </ion-list>
+    </div>
+  </ion-content>
+
+</ion-view>

@@ -1,0 +1,15 @@
+{
+  "name": "thought-machine-app",
+  "private": true,
+  "dependencies": {
+    "ionic": "driftyco/ionic-bower#master",
+    "ng-cordova": "driftyco/ng-cordova",
+    "angular-mocks": "angular/bower-angular-mocks",
+    "lodash": "~2.4.1",
+    "jquery": "~2.1.1"
+  },
+  "resolutions": {
+    "angular": ">= 1.2.26",
+    "firebase": "~2.0.2"
+  }
+}
